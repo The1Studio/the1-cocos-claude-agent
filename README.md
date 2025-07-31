@@ -30,11 +30,11 @@ Genre-specific agents:
 
 ### 🎨 UI/UX Agents
 - **cocos-ui-builder** - Responsive UI implementation
-- **cocos-ux-designer** - User experience optimization
+- **cocos-ux-designer** - User experience optimization and conversion analysis
 
 ### 🌐 Networking & Multiplayer
 - **cocos-multiplayer-architect** - Real-time multiplayer systems
-- **cocos-backend-integrator** - Server integration
+- **cocos-backend-integrator** - Server integration and API communication
 
 ### 📱 Playable Ads (NEW!)
 - **cocos-playable-architect** - Playable ad structure and design
@@ -46,6 +46,18 @@ Genre-specific agents:
 ### ⚡ Performance & Optimization
 - **cocos-performance-optimizer** - General performance tuning
 - **cocos-mobile-optimizer** - Mobile-specific optimization
+
+### 🎯 Content & Progression  
+- **cocos-level-designer** - Level design and difficulty balancing
+- **cocos-progression-specialist** - Player progression and retention systems
+
+### 🔒 Security & Deployment
+- **cocos-security-expert** - Anti-cheat and data protection systems
+- **cocos-platform-integrator** - Cross-platform deployment and store integration
+
+### 📊 Analytics & Intelligence
+- **cocos-analytics-specialist** - Game analytics, A/B testing, and data-driven optimization
+- **cocos-ai-specialist** - AI/ML integration, intelligent NPCs, and procedural generation
 
 ## 🚀 Quick Start (3 Minutes)
 
@@ -79,7 +91,7 @@ cp -r the1-cocos-claude-agent ~/.claude/
 ### 2. Verify Installation
 ```bash
 claude /agents
-# Should show all 21 Cocos Creator agents
+# Should show all 29 Cocos Creator agents
 ```
 
 ### 3. Initialize Your Cocos Project
@@ -177,12 +189,14 @@ Our agents are specifically designed for companies creating playable ads:
 - cocos-puzzle-game-expert
 - cocos-level-designer
 - cocos-progression-specialist
+- cocos-ux-designer
 
 **Multiplayer Game**
 - cocos-project-architect
 - cocos-multiplayer-architect
 - cocos-backend-integrator
 - cocos-security-expert
+- cocos-platform-integrator
 
 **Playable Ads**
 - cocos-playable-architect
@@ -209,6 +223,7 @@ Our agents are specifically designed for companies creating playable ads:
 **Deployment**
 - cocos-build-engineer
 - cocos-platform-integrator
+- cocos-security-expert
 
 ## Cocos Creator Version Support
 

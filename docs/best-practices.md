@@ -1,6 +1,6 @@
 # Cocos Creator Development Best Practices
 
-This guide covers best practices for using Claude agents in Cocos Creator game development.
+This comprehensive guide covers best practices for using Claude agents in Cocos Creator game development, from basic setup to advanced AI integration and live operations.
 
 ## Agent Selection Strategy
 
@@ -301,3 +301,369 @@ describe('PlayerComponent', () => {
 4. **Iterate**: Regular updates based on data
 
 Remember: Good architecture beats optimization. Design well from the start using the appropriate Claude agents, and optimization becomes much easier.
+
+## Advanced Development Practices
+
+### AI and Machine Learning Integration
+
+#### When to Use AI Agents
+- Use `@cocos-ai-specialist` for intelligent NPCs and adaptive gameplay
+- Implement procedural generation for endless content
+- Add player behavior prediction for personalization
+- Use computer vision for AR/camera features
+
+#### AI Best Practices
+```typescript
+// Always provide fallback behavior
+@ccclass('SmartNPC')
+export class SmartNPC extends Component {
+    private useAI: boolean = true;
+    
+    makeDecision(): NPCAction {
+        if (this.useAI) {
+            try {
+                return this.getAIDecision();
+            } catch (error) {
+                console.warn('AI failed, using fallback:', error);
+                this.useAI = false;
+            }
+        }
+        return this.getTraditionalDecision();
+    }
+}
+```
+
+### Analytics and Data-Driven Development
+
+#### Essential Metrics to Track
+```typescript
+// Core game metrics
+analytics.trackEvent('level_complete', {
+    level_id: levelId,
+    duration: completionTime,
+    attempts: attemptCount,
+    score: finalScore
+});
+
+// Monetization metrics
+analytics.trackEvent('purchase_initiated', {
+    product_id: productId,
+    price: price,
+    currency: currency,
+    player_level: playerLevel
+});
+
+// Retention metrics
+analytics.trackEvent('session_start', {
+    session_number: sessionCount,
+    days_since_install: daysSinceInstall
+});
+```
+
+#### Privacy-Compliant Analytics
+```typescript
+// Always check consent before tracking
+if (privacyManager.hasAnalyticsConsent()) {
+    analytics.trackEvent('player_action', eventData);
+} else {
+    // Use anonymous tracking or skip
+    analytics.trackEventAnonymous('player_action', anonymizedData);
+}
+```
+
+### Security and Anti-Cheat
+
+#### Multi-Layer Security Approach
+```typescript
+// Client-side validation (first line of defense)
+if (!this.validateMove(move)) {
+    return false;
+}
+
+// Server-side verification (authoritative)
+const serverValidation = await this.validateMoveOnServer(move);
+if (!serverValidation.valid) {
+    this.handleCheatAttempt(serverValidation.reason);
+    return false;
+}
+
+// Statistical analysis (pattern detection)
+this.updatePlayerStatistics(move);
+if (this.detectAnomalousPattern()) {
+    this.flagForReview();
+}
+```
+
+### Multiplayer Development
+
+#### Network Architecture Principles
+```typescript
+// Always use server authority
+@ccclass('MultiplayerGameManager')
+export class MultiplayerGameManager extends Component {
+    // Client predicts, server validates
+    processPlayerInput(input: PlayerInput) {
+        // Client prediction for responsiveness
+        this.applyInputLocally(input);
+        
+        // Send to server for validation
+        this.sendInputToServer(input);
+    }
+    
+    onServerValidation(serverState: GameState) {
+        // Reconcile with server state
+        this.reconcileWithServer(serverState);
+    }
+}
+```
+
+### Performance Optimization Strategies
+
+#### Adaptive Quality Systems
+```typescript
+@ccclass('AdaptiveQuality')
+export class AdaptiveQuality extends Component {
+    private targetFPS: number = 60;
+    private qualityLevel: number = 1.0;
+    
+    update() {
+        const currentFPS = game.frameRate;
+        
+        if (currentFPS < this.targetFPS * 0.8) {
+            this.reduceQuality();
+        } else if (currentFPS > this.targetFPS * 0.95) {
+            this.increaseQuality();
+        }
+    }
+    
+    private reduceQuality() {
+        this.qualityLevel = Math.max(0.1, this.qualityLevel - 0.1);
+        this.applyQualitySettings();
+    }
+}
+```
+
+### Platform-Specific Optimization
+
+#### iOS Best Practices
+```typescript
+// Handle app lifecycle properly
+onLoad() {
+    if (sys.platform === sys.Platform.IOS) {
+        // iOS-specific optimizations
+        this.setupiOSNotifications();
+        this.configureiOSMemoryWarnings();
+        this.setupGameCenter();
+    }
+}
+```
+
+#### Android Best Practices
+```typescript
+// Handle Android back button
+onLoad() {
+    if (sys.platform === sys.Platform.ANDROID) {
+        systemEvent.on(SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
+    }
+}
+
+onKeyDown(event: EventKeyboard) {
+    if (event.keyCode === KeyCode.BACK) {
+        this.handleBackButton();
+    }
+}
+```
+
+## Live Operations Best Practices
+
+### A/B Testing Implementation
+```typescript
+// Example A/B testing usage
+const tutorialVariant = abTestManager.getVariant('tutorial_flow');
+if (tutorialVariant?.name === 'shortened') {
+    this.showShortenedTutorial();
+} else {
+    this.showStandardTutorial();
+}
+
+// Track conversion
+abTestManager.trackConversion('tutorial_flow', 'completion');
+```
+
+### Remote Configuration
+```typescript
+// Use remote config for balance changes
+@ccclass('GameBalance')
+export class GameBalance extends Component {
+    async loadBalance() {
+        const config = await remoteConfig.getConfig();
+        
+        this.playerSpeed = config.getFloat('player_speed', 100);
+        this.enemyDamage = config.getFloat('enemy_damage', 25);
+        this.rewardMultiplier = config.getFloat('reward_multiplier', 1.0);
+    }
+}
+```
+
+### Monitoring and Alerting
+```typescript
+// Set up automated monitoring
+@ccclass('GameMonitor')
+export class GameMonitor extends Component {
+    update() {
+        // Monitor critical metrics
+        if (game.frameRate < 20) {
+            this.sendAlert('performance', 'Low FPS detected');
+        }
+        
+        if (this.getMemoryUsage() > 500) {
+            this.sendAlert('memory', 'High memory usage');
+        }
+    }
+    
+    private sendAlert(category: string, message: string) {
+        analytics.trackEvent('system_alert', {
+            category,
+            message,
+            timestamp: Date.now()
+        });
+    }
+}
+```
+
+## Agent Workflow Patterns
+
+### The "Layered Development" Pattern
+```bash
+# 1. Foundation Layer
+claude "use @cocos-project-architect and @cocos-component-architect"
+
+# 2. Core Systems Layer
+claude "use @cocos-[genre]-game-expert and @cocos-scene-analyzer"
+
+# 3. Integration Layer
+claude "use @cocos-backend-integrator and @cocos-multiplayer-architect"
+
+# 4. Polish Layer
+claude "use @cocos-ui-builder and @cocos-animation-specialist"
+
+# 5. Optimization Layer
+claude "use @cocos-performance-optimizer and @cocos-mobile-optimizer"
+
+# 6. Deployment Layer
+claude "use @cocos-platform-integrator and @cocos-build-engineer"
+```
+
+### The "Problem-Solution" Pattern
+```bash
+# Problem: Players churning after level 10
+claude "use @cocos-analytics-specialist to analyze churn patterns"
+claude "use @cocos-ux-designer to identify friction points"
+claude "use @cocos-progression-specialist to redesign retention mechanics"
+claude "use @cocos-level-designer to rebalance difficulty curve"
+```
+
+### The "Feature Development" Pattern
+```bash
+# Adding multiplayer to existing game
+claude "use @cocos-multiplayer-architect for architecture planning"
+claude "use @cocos-backend-integrator for server communication"
+claude "use @cocos-security-expert for anti-cheat measures"
+claude "use @cocos-ui-builder for multiplayer UI"
+claude "use @cocos-performance-optimizer for network optimization"
+```
+
+## Quality Assurance
+
+### Automated Testing Integration
+```typescript
+// Example testing with agents
+describe('Game Balance', () => {
+    it('should maintain target difficulty curve', async () => {
+        const levels = await levelGenerator.generateLevels(1, 50);
+        const difficulties = levels.map(l => l.difficulty);
+        
+        // Test with cocos-level-designer validation
+        expect(validateDifficultyCurve(difficulties)).toBe(true);
+    });
+});
+```
+
+### Performance Testing
+```bash
+# Use agents for performance validation
+claude "use @cocos-performance-optimizer to create automated performance tests that validate 60 FPS on mid-range devices"
+```
+
+### Security Testing
+```bash
+# Security validation
+claude "use @cocos-security-expert to create penetration tests for multiplayer vulnerabilities"
+```
+
+## Deployment and Distribution
+
+### Store Optimization
+```bash
+# App Store preparation
+claude "use @cocos-platform-integrator to prepare App Store submission with optimized metadata and screenshots"
+```
+
+### Build Pipeline
+```bash
+# Automated deployment
+claude "use @cocos-build-engineer to set up CI/CD pipeline with automated testing and multi-platform builds"
+```
+
+## Troubleshooting Guide
+
+### Common Issues and Solutions
+
+**Agent Not Working**
+```bash
+# Verify installation
+./scripts/validate-installation.sh
+
+# Check agent availability
+claude /agents | grep cocos-
+
+# Test specific agent
+claude "use @cocos-project-architect and analyze my current project structure"
+```
+
+**Performance Issues**
+```bash
+# Diagnose performance problems
+claude "use @cocos-performance-optimizer to profile my game and identify bottlenecks"
+```
+
+**Integration Problems**
+```bash
+# Debug integration issues
+claude "use @cocos-backend-integrator to debug API connection failures"
+```
+
+## Success Metrics
+
+### Technical KPIs
+- Build success rate: >95%
+- Test coverage: >80%
+- Performance: 60 FPS on target devices
+- Crash rate: <1%
+- Memory usage: <500MB mobile
+
+### Business KPIs
+- Development velocity: 20% faster with agents
+- Bug reduction: 30% fewer production issues
+- Time to market: 25% faster deployment
+- Team efficiency: More time on creative work
+
+## Advanced Tips
+
+1. **Chain Agents Effectively**: Use output from one agent as input to another
+2. **Specialize When Needed**: Don't use generic agents for specialized tasks
+3. **Monitor Agent Performance**: Track which agents provide the most value
+4. **Stay Updated**: Keep agents updated with latest patterns
+5. **Contribute Back**: Share successful patterns with the community
+
+This comprehensive guide ensures you get maximum value from the Cocos Creator Claude agents throughout your entire development lifecycle.
