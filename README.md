@@ -47,18 +47,113 @@ Genre-specific agents:
 - **cocos-performance-optimizer** - General performance tuning
 - **cocos-mobile-optimizer** - Mobile-specific optimization
 
-## Quick Start
+## 🚀 Quick Start (3 Minutes)
 
-1. Clone this repository
-2. Copy the agents you need to your Claude configuration
-3. Use the agents in your Cocos Creator projects
+### Prerequisites
+- **Claude Code CLI** installed and authenticated
+- **Claude subscription** - recommended for intensive agent workflows
+- Active Cocos Creator project directory
 
-### Example Usage
-
+### 1. Install the Agents
+```bash
+git clone https://github.com/The1Studio/the1-cocos-claude-agent.git
 ```
-User: "I need to create a match-3 puzzle game"
-Assistant: "I'll use the cocos-puzzle-game-expert to help you implement the match-3 mechanics..."
+
+#### Option A: Symlink (Recommended - auto-updates)
+
+**macOS/Linux:**
+```bash
+ln -sf "$(pwd)/the1-cocos-claude-agent" ~/.claude/the1-cocos-claude-agent
 ```
+
+**Windows (PowerShell):**
+```powershell
+cmd /c mklink /D "$env:USERPROFILE\.claude\the1-cocos-claude-agent" "$(Get-Location)\the1-cocos-claude-agent"
+```
+
+#### Option B: Copy (Static - no auto-updates)
+```bash
+cp -r the1-cocos-claude-agent ~/.claude/
+```
+
+### 2. Verify Installation
+```bash
+claude /agents
+# Should show all 21 Cocos Creator agents
+```
+
+### 3. Initialize Your Cocos Project
+**Navigate** to your **Cocos Creator project directory** and run:
+
+```bash
+claude "use @cocos-team-coordinator and set up the optimal AI team for my Cocos Creator project"
+```
+
+### 4. Start Building
+```bash
+# For playable ads
+claude "use @cocos-playable-architect and create a match-3 playable ad structure"
+
+# For mobile games
+claude "use @cocos-project-architect and design a casual puzzle game architecture"
+
+# For optimization
+claude "use @cocos-performance-optimizer and improve my game's performance"
+```
+
+Your AI team will automatically detect your Cocos version and select the right specialists!
+
+## 🎯 How It Works
+
+The Cocos Creator agents work together seamlessly:
+
+1. **Project Analysis** - `cocos-team-coordinator` detects your Cocos version, project type, and target platforms
+2. **Architecture Planning** - `cocos-project-architect` designs the overall system structure  
+3. **Specialized Implementation** - Domain experts handle specific areas (playable ads, UI, performance)
+4. **Quality Assurance** - Built-in optimization and best practices enforcement
+
+### Example Workflows
+
+**Creating a Playable Ad:**
+```bash
+claude "use @cocos-rapid-prototyper and create a quick match-3 playable prototype"
+claude "use @cocos-tutorial-designer and add an engaging tutorial flow"  
+claude "use @cocos-playable-optimizer and reduce size to under 3MB"
+claude "use @cocos-conversion-optimizer and maximize install rates"
+```
+
+**Building a Mobile Game:**
+```bash
+claude "use @cocos-casual-game-expert and implement core gameplay mechanics"
+claude "use @cocos-ui-builder and create responsive UI for multiple screen sizes"
+claude "use @cocos-mobile-optimizer and optimize for low-end Android devices"
+```
+
+## 🔥 Why Specialized Agents Beat Generic AI
+
+- **Cocos Creator Expertise**: Each agent masters specific aspects of Cocos Creator 3.8.x development
+- **Playable Ads Focus**: Specialized knowledge for your core business - size limits, conversion optimization, tutorial design
+- **Real Collaboration**: Agents coordinate seamlessly, sharing context and following delegation patterns
+- **Industry Best Practices**: Get code that follows Cocos Creator conventions and mobile game standards
+- **Rapid Development**: Template-based workflows for quick playable ad production
+
+## 📈 The Impact for Your Business
+
+- **Ship Playables Faster** - Complete prototypes in hours, not days
+- **Higher Conversion Rates** - Psychology-driven tutorial and CTA optimization  
+- **Consistent Quality** - Every playable follows size limits and performance standards
+- **Scale Production** - Template system enables batch creation of variations
+- **Reduce Iteration Time** - Quick A/B testing and optimization cycles
+
+## 🎮 Perfect for Playable Ads Business
+
+Our agents are specifically designed for companies creating playable ads:
+
+- **Size Optimization** - Meet strict network requirements (2-5MB)
+- **Conversion Focus** - Maximize install rates with proven strategies
+- **Rapid Prototyping** - Quick iteration for client approval cycles
+- **Template System** - Reusable patterns for similar playables
+- **Network Compliance** - Facebook, Google, Unity, IronSource specifications
 
 ## Best Practices
 
@@ -129,12 +224,37 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on adding new agents or im
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Resources
+## 📚 Learn More
 
+- [Best Practices Guide](docs/best-practices.md) - Get the most from your Cocos Creator AI team
+- [Contributing Guide](CONTRIBUTING.md) - Add your own specialized agents
 - [Cocos Creator Documentation](https://docs.cocos.com/creator/manual/en/)
 - [TypeScript Handbook](https://www.typescriptlang.org/docs/)
-- [Game Development Patterns](https://gameprogrammingpatterns.com/)
+
+## 💬 Join The Community
+
+- ⭐ **Star this repo** to show support for Cocos Creator development
+- 🐛 [Report issues](https://github.com/The1Studio/the1-cocos-claude-agent/issues) - Help us improve the agents
+- 💡 [Request features](https://github.com/The1Studio/the1-cocos-claude-agent/issues) - Suggest new agents or improvements
+- 🎉 Share your playable ads built with these agents!
+
+## 🏢 About The1Studio
+
+Built by [The1Studio](https://github.com/The1Studio) - specialists in mobile game development and playable advertising.
 
 ## Acknowledgments
 
-Inspired by the awesome-claude-agents project and the Cocos Creator community.
+Inspired by the [awesome-claude-agents](https://github.com/vijaythecoder/awesome-claude-agents) project. Adapted specifically for Cocos Creator and playable ads development.
+
+---
+
+<p align="center">
+  <strong>Transform Claude Code into a Cocos Creator development team that ships playable ads</strong><br>
+  <em>Specialized agents. Rapid prototyping. Maximum conversions.</em>
+</p>
+
+<p align="center">
+  <a href="https://github.com/The1Studio/the1-cocos-claude-agent">GitHub</a> •
+  <a href="docs/best-practices.md">Documentation</a> •
+  <a href="https://github.com/The1Studio/the1-cocos-claude-agent/issues">Community</a>
+</p>
